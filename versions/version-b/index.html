@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f2f0e7" />
+    <meta name="description" content="Marvel Network Observatory: a field note on 303 superhero Wikipedia pages and the links between them." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Marvel Network Observatory" />
+    <meta property="og:description" content="Famous and talkative are not the same." />
+    <meta property="og:url" content="https://valdemarnielsen.github.io/marvel-network-observatory/" />
+    <meta property="og:image" content="https://valdemarnielsen.github.io/marvel-network-observatory/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Marvel Network Observatory" />
+    <meta name="twitter:description" content="Famous and talkative are not the same." />
+    <meta name="twitter:image" content="https://valdemarnielsen.github.io/marvel-network-observatory/assets/og.png" />
+    <title>Link Magnets / Link Makers · Marvel Network Observatory</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#network">Skip to the network</a>
+
+    <header class="topbar">
+      <a class="wordmark" href="#top"><span>MNO</span> Marvel Network Observatory</a>
+      <div class="topbar-note"><span class="status-dot"></span> Field note 001 · Networks</div>
+      <nav aria-label="Page sections">
+        <a href="#network">Map</a><a href="#comparison">Compare</a><a href="#distribution">Shape</a><a href="#islands">Edges</a>
+      </nav>
+      <a class="version-link" href="../version-a/">See version A ↗</a>
+    </header>
+
+    <main id="top">
+      <section class="workbench">
+        <div class="intro-panel">
+          <div class="edition-tag"><span>02805</span><span>W01 / 08</span><span>26.08.26</span></div>
+          <p class="kicker">Wikipedia’s superhero hyperlink system</p>
+          <h1>LINK<br />MAGNETS <i>/</i><br />LINK<br />MAKERS</h1>
+          <p class="intro-copy">Does the character everyone links <em>to</em> also link to everyone else? Across 303 pages, the answer is a spectacular no.</p>
+          <div class="stat-grid" aria-label="Dataset summary">
+            <article><strong data-stat="nodes">303</strong><span>characters</span></article>
+            <article><strong data-stat="directedEdges">1,784</strong><span>directed links</span></article>
+            <article><strong data-stat="undirectedPairs">1,434</strong><span>unique pairs</span></article>
+            <article><strong data-stat="isolates">17</strong><span>isolates</span></article>
+          </div>
+          <p class="scroll-note">Explore the live map <span aria-hidden="true">↘</span></p>
+        </div>
+
+        <section class="atlas-panel" id="network" aria-labelledby="network-title">
+          <header class="atlas-titlebar">
+            <div><span>INTERACTIVE ATLAS</span><h2 id="network-title">303 dots. 1,784 arrows.</h2></div>
+            <p>Drag · zoom · search · select</p>
+          </header>
+          <div class="explorer-toolbar">
+            <div class="segmented" role="group" aria-label="Size nodes by">
+              <button type="button" class="is-active" data-network-metric="in">In</button>
+              <button type="button" data-network-metric="out">Out</button>
+              <button type="button" data-network-metric="degree">Neighbors</button>
+            </div>
+            <label class="search-control"><span class="sr-only">Find a character</span><input id="character-search" type="search" list="character-options" placeholder="Search 303 characters" autocomplete="off" /><datalist id="character-options"></datalist></label>
+            <button class="icon-button" id="reset-network" type="button" title="Reset network view" aria-label="Reset network view">Reset</button>
+          </div>
+          <div class="atlas-body">
+            <div class="network-stage" id="network-stage">
+              <canvas id="network-canvas" aria-label="Interactive map of the Marvel Wikipedia character network"></canvas>
+              <div class="data-status" id="data-status" role="status">Mapping 303 characters…</div>
+              <div class="chart-tooltip" id="network-tooltip" role="tooltip" hidden></div>
+              <div class="network-key" aria-hidden="true"><span><i class="key-in"></i> more links in</span><span><i class="key-out"></i> more links out</span><span><i class="key-mutual"></i> balanced</span><span><i class="key-isolate"></i> isolate</span></div>
+            </div>
+            <aside class="atlas-sidebar">
+              <article class="character-card" id="character-card" aria-live="polite">
+                <p class="micro-label">FOCUS / 001</p>
+                <h3 id="selected-name">Spider-Man</h3>
+                <p class="selected-description" id="selected-description">The network’s largest destination.</p>
+                <dl class="character-stats"><div><dt>IN</dt><dd id="selected-in">106</dd></div><div><dt>OUT</dt><dd id="selected-out">9</dd></div><div><dt>NEIGHBORS</dt><dd id="selected-degree">106</dd></div></dl>
+                <a id="selected-link" href="https://en.wikipedia.org/wiki/Spider-Man" target="_blank" rel="noreferrer">Read source page ↗</a>
+              </article>
+              <article class="leaderboard-card">
+                <div class="leaderboard-head"><div><p class="micro-label">RANK / TOP 05</p><h3 id="leaderboard-title">Most linked to</h3></div><button class="swap-button" id="swap-leaderboard" type="button" aria-label="Switch leaderboard to links out">↔</button></div>
+                <ol class="leaderboard" id="leaderboard"></ol>
+              </article>
+            </aside>
+          </div>
+        </section>
+      </section>
+
+      <section class="finding-strip" aria-label="Main finding">
+        <span>MAIN FINDING</span>
+        <p><strong>Spider-Man is a destination.</strong> Betsy Braddock is a guide.</p>
+        <a href="#comparison">See the evidence ↓</a>
+      </section>
+
+      <section class="comparison-section section-wide" id="comparison">
+        <div class="section-index"><span>02</span><p>FAME ≠ LINKAGE</p></div>
+        <div class="comparison-copy">
+          <p class="kicker">Incoming versus outgoing</p>
+          <h2>The two leaderboards barely recognize each other.</h2>
+          <div class="duel-numbers">
+            <article><p>SPIDER-MAN</p><strong>106 <small>in</small></strong><span>9 out</span></article>
+            <article><p>BETSY BRADDOCK</p><strong>28 <small>out</small></strong><span>7 in</span></article>
+          </div>
+          <p class="body-copy">Every arrow adds one incoming and one outgoing link, so both averages equal 5.89. Their extremes do not: Wikipedia’s Marvel universe has giant destinations but no equally giant sources.</p>
+        </div>
+        <div class="scatter-module">
+          <div class="module-head"><div><span>FIG. 01</span><strong>Fame / linkage matrix</strong></div><div class="segmented light" role="group" aria-label="Scatterplot scale"><button type="button" data-scatter-scale="linear">Linear</button><button type="button" class="is-active" data-scatter-scale="log">Log–log</button></div></div>
+          <div class="chart-card scatter-card"><svg id="scatter-chart" viewBox="0 0 940 570" role="img" aria-label="Scatterplot comparing each character's in-degree and out-degree"></svg><div class="chart-tooltip" id="scatter-tooltip" role="tooltip" hidden></div></div>
+          <div class="figure-key"><p><i class="swatch cyan"></i>Linked to more</p><p><i class="swatch coral"></i>Links out more</p><p>Both axes show degree + 1 to retain zeroes.</p></div>
+        </div>
+      </section>
+
+      <section class="distribution-section" id="distribution">
+        <div class="distribution-grid section-wide">
+          <div class="section-index inverse"><span>03</span><p>THE SHAPE</p></div>
+          <header class="distribution-copy">
+            <p class="kicker">Most are modest. A few become enormous.</p>
+            <h2>Turn the axes. Watch the tail appear.</h2>
+            <p>Raw points show the exact probability. Yellow points use the course binning rule: width one through k + 1 = 7, then doubling widths and dividing counts by bin width.</p>
+            <div class="chart-controls">
+              <div class="segmented dark" role="group" aria-label="Degree direction"><button type="button" class="is-active" data-dist-metric="in">In-degree</button><button type="button" data-dist-metric="out">Out-degree</button></div>
+              <div class="segmented dark" role="group" aria-label="Distribution scale"><button type="button" data-dist-scale="linear">Linear</button><button type="button" class="is-active" data-dist-scale="log">Log–log</button></div>
+            </div>
+            <div class="binning-check"><span>CHECK</span><strong>0.0000</strong><p>maximum mismatch in width-one bins</p></div>
+          </header>
+          <div class="distribution-module">
+            <div class="module-head dark-head"><div><span>FIG. 02</span><strong>Degree distribution</strong></div><div class="figure-key compact"><p><i class="swatch raw"></i>Raw</p><p><i class="swatch binned"></i>Binned</p></div></div>
+            <div class="chart-card distribution-card"><svg id="distribution-chart" viewBox="0 0 940 520" role="img" aria-label="Degree distribution with raw and width-normalized binned values"></svg><div class="chart-tooltip" id="distribution-tooltip" role="tooltip" hidden></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edges-section section-wide" id="islands">
+        <div class="section-index"><span>04</span><p>THE EDGES</p></div>
+        <header class="edges-copy"><p class="kicker">Beyond the giant component</p><h2>A continent, a secret club, and 17 dots alone.</h2><p>Those lonely dots vanish if we create nodes from the edge list. The full roster keeps them visible.</p></header>
+        <div class="component-ledger">
+          <article class="component-row giant-row"><div><strong>277</strong><span>GIANT COMPONENT</span></div><p>91.4% of all characters live inside one connected structure.</p><div class="ledger-bar"><i style="--size:91.4%"></i></div></article>
+          <article class="component-row island-row"><div><strong>9</strong><span>TIGHT ISLAND</span></div><p>22 directed links, 13 pairs, 81.8% reciprocity.</p><div class="name-cloud" id="island-list"></div></article>
+          <article class="component-row isolate-row"><div><strong>17</strong><span>ISOLATES</span></div><p>No link in or out within this frozen snapshot.</p><button class="reveal-button" id="reveal-isolates" type="button" aria-expanded="false" aria-controls="isolate-list">Open index ↓</button></article>
+          <div class="isolate-drawer" id="isolate-list" hidden></div>
+        </div>
+      </section>
+
+      <section class="method-section" id="method">
+        <div class="method-inner section-wide">
+          <div class="method-heading"><p class="kicker">Protocol / caveat</p><h2>What this map is, and is not.</h2></div>
+          <div class="method-notes">
+            <article><span>01</span><h3>Roster before arrows</h3><p>Add all 303 characters first; then add the 1,784 directed links. That is how 17 isolates survive.</p></article>
+            <article><span>02</span><h3>Direction has meaning</h3><p>A → B means A’s Wikipedia article links to B’s. It does not mean friendship, a fight, or popularity.</p></article>
+            <article><span>03</span><h3>Collapse with care</h3><p>350 pairs link both ways. Collapsing them gives 1,434 pairs and mean undirected degree 9.47.</p></article>
+          </div>
+          <div class="source-line"><a href="https://sunelehmann.com/socialgraphs2026-web/data/" target="_blank" rel="noreferrer">Course snapshot ↗</a><a href="https://en.wikipedia.org/wiki/Category:Marvel_Comics_superheroes" target="_blank" rel="noreferrer">Wikipedia category ↗</a><span>Frozen 26 August 2026</span></div>
+        </div>
+      </section>
+
+      <section class="week-tape" aria-label="Eight-week course progress">
+        <article class="active"><span>01</span><strong>NETWORKS</strong><p>Link magnets / link makers</p></article>
+        <article><span>02</span><strong>NEXT</strong></article><article><span>03</span><strong>SOON</strong></article><article><span>04</span><strong>SOON</strong></article><article><span>05</span><strong>SOON</strong></article><article><span>06</span><strong>SOON</strong></article><article><span>07</span><strong>SOON</strong></article><article><span>08</span><strong>SOON</strong></article>
+      </section>
+    </main>
+
+    <footer><span>MARVEL NETWORK OBSERVATORY</span><p>Built by Sebastian, Orestis and Valdemar · 02805 Social Graphs and Interactions · DTU · 2026</p><a href="#top">Back to top ↑</a></footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>

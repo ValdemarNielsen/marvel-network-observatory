@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en" class="week2-mode">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1024" />
+    <meta name="description" content="Issue 02 of the Marvel Network Observatory tests whether Marvel's clustering can be explained by its degree sequence." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Marvel Network Observatory | Issue 02" />
+    <meta property="og:description" content="Are Marvel's triangles just hubs in disguise? Three null models enter the evidence room." />
+    <meta property="og:url" content="https://valdemarnielsen.github.io/marvel-network-observatory/week2/" />
+    <title>Marvel Network Observatory | Issue 02: The Counterfeit Triangles</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="week2.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#evidence">Skip to the evidence</a>
+
+    <header class="case-header">
+      <a class="case-brand" href="../" aria-label="Marvel Network Observatory, Issue 01">
+        <span class="brand-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Marvel Network Files</span>
+      </a>
+      <nav class="issue-switcher" aria-label="Published issues">
+        <a href="../">Issue 01</a>
+        <a href="./" aria-current="page">Issue 02</a>
+      </nav>
+      <span class="course-mark">DTU · 02805</span>
+    </header>
+
+    <main id="evidence">
+      <section class="case-page hero-case" aria-labelledby="case-title">
+        <div class="case-copy">
+          <p class="issue-line"><span>Issue 02</span> Models and null models</p>
+          <h1 id="case-title">The case of the <em>counterfeit triangles</em></h1>
+          <p class="case-lead">Marvel's average clustering is <strong id="hero-real">0.320</strong>. Are the hubs enough to explain it, or is something else holding these neighborhoods together?</p>
+
+          <div class="verdict-stamp" aria-label="Initial verdict">
+            <span>Initial verdict</span>
+            <strong>THE DEGREE SEQUENCE<br />HAS AN ALIBI</strong>
+          </div>
+
+          <dl class="headline-numbers" aria-label="Headline clustering results">
+            <div><dt>Real Marvel</dt><dd id="metric-real">0.320</dd></div>
+            <div><dt>Degree swaps</dt><dd id="metric-swaps">0.154</dd></div>
+            <div><dt>z-score</dt><dd id="metric-z">16.8</dd></div>
+          </dl>
+        </div>
+
+        <article class="evidence-card" aria-labelledby="chart-title">
+          <header class="evidence-heading">
+            <div>
+              <p>Exhibit A · 100 networks per null</p>
+              <h2 id="chart-title">Where does reality land?</h2>
+            </div>
+            <div class="stat-toggle" role="group" aria-label="Statistic shown">
+              <button type="button" class="is-active" data-statistic="averageClustering" aria-pressed="true">Average C</button>
+              <button type="button" data-statistic="transitivity" aria-pressed="false">Transitivity</button>
+            </div>
+          </header>
+
+          <fieldset class="model-controls">
+            <legend>Show null models</legend>
+            <label class="model-swaps"><input type="checkbox" data-model="swaps" checked /><span></span>Degree swaps</label>
+            <label class="model-configuration"><input type="checkbox" data-model="configuration" checked /><span></span>Configuration</label>
+            <label class="model-gnm"><input type="checkbox" data-model="gnm" checked /><span></span>Random G(n,m)</label>
+          </fieldset>
+
+          <div class="chart-shell">
+            <svg id="null-chart" viewBox="0 0 920 500" role="img" aria-labelledby="chart-title chart-description"></svg>
+            <p id="chart-description" class="sr-only">Distributions from three null models with the real Marvel value marked as a vertical line.</p>
+            <div id="chart-tooltip" class="chart-tooltip" hidden></div>
+          </div>
+
+          <p class="chart-caption" id="chart-caption" aria-live="polite">Loading the evidence…</p>
+        </article>
+      </section>
+
+      <section class="case-page baseline-page" id="baselines" aria-labelledby="baselines-title">
+        <header class="page-heading">
+          <p><span>02</span> The suspects</p>
+          <h2 id="baselines-title">Three alibis.<br />Three different questions.</h2>
+          <p class="page-lead">A null model is not just “random.” What it preserves decides what the comparison can tell us.</p>
+        </header>
+
+        <div class="baseline-grid">
+          <article class="baseline-dossier swaps-dossier">
+            <div class="dossier-tab">Best baseline</div>
+            <p class="dossier-number">Null 01</p>
+            <h3>Degree-preserving swaps</h3>
+            <p class="dossier-question">Are the triangles explained by the degree sequence alone?</p>
+            <dl>
+              <div><dt>Keeps</dt><dd>Every character's degree and all 1,421 links</dd></div>
+              <div><dt>Scrambles</dt><dd>Who connects to whom</dd></div>
+              <div><dt>Mean C</dt><dd id="swaps-mean">0.154</dd></div>
+              <div><dt>Result</dt><dd id="swaps-result">z = 16.8 · p = 0.0099</dd></div>
+            </dl>
+          </article>
+
+          <article class="baseline-dossier configuration-dossier">
+            <p class="dossier-number">Null 02</p>
+            <h3>Configuration, simplified</h3>
+            <p class="dossier-question">What happens when matching stubs are paired at random?</p>
+            <dl>
+              <div><dt>Starts with</dt><dd>The exact degree sequence</dd></div>
+              <div><dt>Then drops</dt><dd>Self-loops and repeated links</dd></div>
+              <div><dt>Mean C</dt><dd id="configuration-mean">0.111</dd></div>
+              <div><dt>Cost</dt><dd id="configuration-cost">102.7 links on average</dd></div>
+            </dl>
+          </article>
+
+          <article class="baseline-dossier gnm-dossier">
+            <p class="dossier-number">Null 03</p>
+            <h3>Random G(n,m)</h3>
+            <p class="dossier-question">Is Marvel more clustered than pure chance with the same size?</p>
+            <dl>
+              <div><dt>Keeps</dt><dd>277 characters and 1,421 links</dd></div>
+              <div><dt>Changes</dt><dd>Degrees and every connection</dd></div>
+              <div><dt>Mean C</dt><dd id="gnm-mean">0.038</dd></div>
+              <div><dt>Result</dt><dd id="gnm-result">z = 92.3 · p = 0.0099</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <p class="baseline-punchline"><strong>The useful comparison is Null 01.</strong> It lets the hubs keep their power, then asks whether their arrangement still matters.</p>
+      </section>
+
+      <section class="case-page damage-page" id="damage" aria-labelledby="damage-title">
+        <header class="page-heading page-heading-light">
+          <p><span>03</span> The missing links</p>
+          <h2 id="damage-title">The configuration model ate <strong id="lost-links-title">103</strong> links.</h2>
+          <p class="page-lead">The loss is not evenly shared. Hubs create many chances for self-loops and repeated links, so simplifying the multigraph trims them hardest.</p>
+        </header>
+
+        <div class="damage-layout">
+          <article class="damage-chart-card">
+            <header><p>Exhibit B</p><h3>Who paid for simplification?</h3></header>
+            <svg id="damage-chart" viewBox="0 0 900 500" role="img" aria-labelledby="damage-chart-title damage-chart-desc">
+              <title id="damage-chart-title">Average degree retained by top hubs after simplifying the configuration model</title>
+              <desc id="damage-chart-desc">Bars compare each hub's real degree with its average degree across 100 simplified configuration networks.</desc>
+            </svg>
+            <div class="damage-key" aria-hidden="true"><span><i></i>Real degree</span><span><i></i>After simplification</span></div>
+          </article>
+
+          <aside class="damage-note">
+            <p class="note-kicker">Victim 01</p>
+            <h3>Spider-Man</h3>
+            <div class="loss-number"><strong id="spider-loss">30.4</strong><span>links lost on average</span></div>
+            <p>His degree falls from 106 to <strong id="spider-retained">75.6</strong>. That is why the simplified configuration baseline lands below the exact-degree swap baseline.</p>
+            <dl>
+              <div><dt>Average links dropped</dt><dd id="lost-links-mean">102.7</dd></div>
+              <div><dt>Observed range</dt><dd id="lost-links-range">80 to 125</dd></div>
+            </dl>
+          </aside>
+        </div>
+
+        <details class="hub-table-drawer">
+          <summary>Open the complete hub damage report</summary>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Character</th><th>Real degree</th><th>Mean after simplification</th><th>Mean lost</th></tr></thead>
+              <tbody id="hub-table-body"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <section class="case-page verdict-page" id="verdict" aria-labelledby="verdict-title">
+        <header class="page-heading">
+          <p><span>04</span> The verdict</p>
+          <h2 id="verdict-title">Hubs explain some triangles.<br />They do not explain Marvel.</h2>
+        </header>
+
+        <div class="verdict-layout">
+          <blockquote class="paper-paragraph">
+            <span>The paragraph we would put in a paper</span>
+            <p>The undirected Marvel giant component has average clustering <strong>C = 0.320</strong>. Across 100 degree-preserving rewires with 10m successful edge swaps each, mean clustering was <strong>0.154</strong> (SD = 0.0099; z = 16.8; one-sided empirical p = 1/101 = 0.0099). The degree sequence therefore explains part, but not all, of Marvel's clustering; additional organization in who links to whom is required, although this test does not identify one unique mechanism.</p>
+          </blockquote>
+
+          <div class="verdict-cards">
+            <article class="can-card">
+              <p>We can say</p>
+              <h3>Degrees alone fall short.</h3>
+              <p>The real value is above every exact-degree shuffle. Something about the placement of links creates extra closed neighborhoods.</p>
+            </article>
+            <article class="cannot-card">
+              <p>We cannot say</p>
+              <h3>We found the cause.</h3>
+              <p>Communities, editorial conventions, shared storylines, and other structures could all contribute. The test rejects a baseline, not every alternative.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="surprise-strip">
+          <span>What surprised us</span>
+          <p>Pure chance gives <strong>C = 0.038</strong>. Keeping the hubs raises that to <strong>0.154</strong>. Reality then doubles it again to <strong>0.320</strong>.</p>
+        </div>
+      </section>
+
+      <section class="case-page method-page" id="method" aria-labelledby="method-title">
+        <header class="page-heading page-heading-light">
+          <p><span>05</span> The receipts</p>
+          <h2 id="method-title">Reproducible.<br />Preselected. Honest.</h2>
+          <p class="page-lead">We chose average clustering before running the nulls and used the same frozen network as Issue 01.</p>
+        </header>
+
+        <div class="method-grid">
+          <ol class="method-steps">
+            <li><span>01</span><div><h3>Choose the graph</h3><p>Collapse directed links to undirected pairs, then use the 277-character giant component with 1,421 links.</p></div></li>
+            <li><span>02</span><div><h3>Build the nulls</h3><p>Generate 100 networks for each baseline with fixed seed 20260909.</p></div></li>
+            <li><span>03</span><div><h3>Mix thoroughly</h3><p>Each degree-preserving null receives 14,210 successful swaps, exactly ten times the link count.</p></div></li>
+            <li><span>04</span><div><h3>Verify the promise</h3><p>Sort and compare every shuffled degree sequence with the original. All 100 matched exactly.</p></div></li>
+            <li><span>05</span><div><h3>Never report p = 0</h3><p>Use (1 + extreme nulls) / (1 + simulations). With 100 simulations, the smallest possible value is 1/101.</p></div></li>
+          </ol>
+
+          <aside class="code-receipt">
+            <p>Core experiment</p>
+            <pre><code>H = giant_component(G).copy()
+
+for seed in seeds:
+    null = H.copy()
+    nx.double_edge_swap(
+        null,
+        nswap=10 * H.number_of_edges(),
+        seed=seed,
+    )
+    C_null.append(nx.average_clustering(null))</code></pre>
+            <div class="receipt-links">
+              <a href="../scripts/build_week2_data.py">Read the full analysis</a>
+              <a href="data/null_models.json">Download the results</a>
+            </div>
+          </aside>
+        </div>
+
+        <div class="source-row">
+          <a href="https://sunelehmann.com/socialgraphs2026-web/weeks/week2.html#go-nuts" target="_blank" rel="noreferrer">Week 2 brief <span aria-hidden="true">↗</span></a>
+          <a href="https://sunelehmann.com/socialgraphs2026-web/data/" target="_blank" rel="noreferrer">Frozen course data <span aria-hidden="true">↗</span></a>
+          <span>100 networks per null · fixed seed</span>
+        </div>
+
+        <div class="issue-track" aria-label="Course post progress">
+          <a href="../"><span>01</span><small>Networks</small><strong>Fame vs. linkage</strong></a>
+          <a href="./" aria-current="page"><span>02</span><small>Null models</small><strong>Counterfeit triangles</strong></a>
+          <div><span>03</span><small>Coming next</small></div>
+          <div><span>04</span><small>Coming soon</small></div>
+          <div><span>05</span><small>Coming soon</small></div>
+          <div><span>06</span><small>Coming soon</small></div>
+          <div><span>07</span><small>Coming soon</small></div>
+          <div><span>08</span><small>Coming soon</small></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="case-reader" aria-label="Issue 02 sections">
+      <a href="#evidence" data-case-link><span>01</span><strong>Evidence</strong></a>
+      <a href="#baselines" data-case-link><span>02</span><strong>Nulls</strong></a>
+      <a href="#damage" data-case-link><span>03</span><strong>Damage</strong></a>
+      <a href="#verdict" data-case-link><span>04</span><strong>Verdict</strong></a>
+      <a href="#method" data-case-link><span>05</span><strong>Method</strong></a>
+      <i aria-hidden="true"><b id="reading-progress"></b></i>
+    </nav>
+
+    <footer><span>Built by Sebastian, Orestis and Valdemar</span><span>Issue 02 · 02805 Social Graphs and Interactions · DTU · 2026</span></footer>
+    <script src="week2.js"></script>
+  </body>
+</html>

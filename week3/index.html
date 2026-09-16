@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" class="week3-mode">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10162f" />
+    <meta name="description" content="Issue 03 of the Marvel Network Observatory asks which characters matter, why they matter, and what happens when they disappear." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Marvel Network Observatory | Issue 03" />
+    <meta property="og:description" content="Popularity is not brokerage. Put Marvel's centrality rankings and network resilience on trial." />
+    <meta property="og:url" content="https://valdemarnielsen.github.io/marvel-network-observatory/week3/" />
+    <title>Marvel Network Observatory | Issue 03: Who Holds the Universe Together?</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="week3.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#rank-lab">Skip to the centrality lab</a>
+
+    <header class="field-header">
+      <a class="field-brand" href="../" aria-label="Marvel Network Observatory home">
+        <span class="signal-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Marvel Network Files</span>
+      </a>
+      <nav class="issue-switcher" aria-label="Published issues">
+        <a href="../">01</a>
+        <a href="../week2/">02</a>
+        <a href="./" aria-current="page">03</a>
+      </nav>
+      <span class="course-mark">DTU 02805 · Week 3</span>
+    </header>
+
+    <main>
+      <section class="dispatch" id="rank-lab" aria-labelledby="dispatch-title">
+        <div class="dispatch-copy">
+          <p class="kicker"><span>Issue 03</span> Advanced network measures</p>
+          <h1 id="dispatch-title">Who holds the <em>universe</em> together?</h1>
+          <p class="lead">Popularity, reach, control, and prestige crown different heroes. Pick a definition and watch the leaderboard move.</p>
+          <div class="signal-stats" aria-label="Week 3 headline findings">
+            <div><span>Unexpected broker</span><strong>Turbo</strong><small>z = 8.31</small></div>
+            <div><span>Articulation points</span><strong>13</strong><small>single points of failure</small></div>
+            <div><span>Largest clique</span><strong>8</strong><small>six overlapping teams</small></div>
+          </div>
+        </div>
+
+        <article class="rank-console" aria-labelledby="rank-title">
+          <header class="console-header">
+            <div><p>Explorable 01</p><h2 id="rank-title">The importance switchboard</h2></div>
+            <span class="live-badge"><i></i> Live ranking</span>
+          </header>
+          <div class="metric-tabs" role="group" aria-label="Centrality measure">
+            <button type="button" class="is-active" data-metric="degree" aria-pressed="true">Degree</button>
+            <button type="button" data-metric="closeness" aria-pressed="false">Closeness</button>
+            <button type="button" data-metric="betweenness" aria-pressed="false">Betweenness</button>
+            <button type="button" data-metric="eigenvector" aria-pressed="false">Eigenvector</button>
+          </div>
+          <p class="metric-question" id="metric-question">Who has the most direct connections?</p>
+          <ol class="rank-list" id="rank-list" aria-live="polite">
+            <li><span>01</span><button type="button">Spider-Man</button><i></i><strong>106</strong></li>
+            <li><span>02</span><button type="button">Hulk</button><i></i><strong>65</strong></li>
+            <li><span>03</span><button type="button">Wolverine</button><i></i><strong>63</strong></li>
+          </ol>
+          <aside class="rank-profile" id="rank-profile" aria-live="polite">
+            <div><span id="profile-monogram">SM</span></div>
+            <section>
+              <p>Selected character</p>
+              <h3 id="profile-name">Spider-Man</h3>
+              <dl>
+                <div><dt>Degree</dt><dd id="profile-degree">106 · #1</dd></div>
+                <div><dt>Reach</dt><dd id="profile-closeness">0.595 · #1</dd></div>
+                <div><dt>Control</dt><dd id="profile-betweenness">0.234 · #1</dd></div>
+              </dl>
+            </section>
+          </aside>
+        </article>
+      </section>
+
+      <section class="field-page broker-page" id="brokers" aria-labelledby="brokers-title">
+        <header class="page-heading">
+          <p><span>01</span> Popular is not pivotal</p>
+          <h2 id="brokers-title">Turbo beats the degree alibi.</h2>
+          <p>We rewired the network 100 times while preserving every character's degree. The question was simple: does each character control more shortest paths than their number of links predicts?</p>
+        </header>
+
+        <div class="broker-layout">
+          <article class="broker-chart-card">
+            <header>
+              <div><p>Explorable 02</p><h3>Betweenness beyond degree</h3></div>
+              <div class="broker-filter" role="group" aria-label="Characters shown">
+                <button type="button" class="is-active" data-broker-view="brokers" aria-pressed="true">Brokers</button>
+                <button type="button" data-broker-view="sheltered" aria-pressed="false">Sheltered</button>
+              </div>
+            </header>
+            <div class="chart-wrap">
+              <svg id="broker-chart" role="img" aria-labelledby="broker-chart-title broker-chart-desc">
+                <title id="broker-chart-title">Degree rank compared with betweenness surprise z-score</title>
+                <desc id="broker-chart-desc">Characters above zero have more betweenness than degree-preserving shuffled networks predict.</desc>
+              </svg>
+              <div class="chart-tooltip" id="broker-tooltip" hidden></div>
+            </div>
+            <p class="chart-note">Higher means more brokerage than degree alone predicts. Click a point for its case file.</p>
+          </article>
+
+          <aside class="broker-file" id="broker-file">
+            <p class="file-tab">Case file 001</p>
+            <div class="file-name-row"><span id="broker-initials">TU</span><div><small>Most unexpected broker</small><h3 id="broker-name">Turbo</h3></div></div>
+            <dl>
+              <div><dt>Links</dt><dd id="broker-degree">5</dd></div>
+              <div><dt>Degree rank</dt><dd id="broker-degree-rank">#183</dd></div>
+              <div><dt>Betweenness rank</dt><dd id="broker-between-rank">#55</dd></div>
+              <div><dt>Null z-score</dt><dd id="broker-z">+8.31</dd></div>
+              <div><dt>Two-sided empirical p</dt><dd id="broker-p">0.020</dd></div>
+            </dl>
+            <p id="broker-story">Turbo is a five-link hinge. Remove Turbo and Redneck becomes separated from the giant component.</p>
+            <div class="connection-strip" aria-label="Turbo's neighbors">
+              <span>Darkhawk</span><span>Nova</span><span>Phil Urich</span><span>Redneck</span><span>Rom</span>
+            </div>
+          </aside>
+        </div>
+
+        <div class="duel-strip">
+          <article><span>Broker</span><h3>Turbo</h3><strong>5 links</strong><p>Betweenness z = +8.31</p></article>
+          <div aria-hidden="true">VS</div>
+          <article><span>Sheltered celebrity</span><h3>Black Cat</h3><strong>28 links</strong><p>Betweenness z = -2.71</p></article>
+          <p class="duel-verdict">Degree counts doors. Betweenness asks whether the routes actually need them.</p>
+        </div>
+      </section>
+
+      <section class="field-page attack-page" id="attack" aria-labelledby="attack-title">
+        <header class="page-heading light-heading">
+          <p><span>02</span> Network stress test</p>
+          <h2 id="attack-title">Pull characters out. Watch Marvel bend.</h2>
+          <p>Choose an attack order and drag the slider. Rankings are computed once on the intact network, then characters are removed one by one.</p>
+        </header>
+
+        <article class="attack-console">
+          <div class="attack-controls">
+            <div class="strategy-tabs" role="group" aria-label="Removal strategy">
+              <button type="button" class="is-active" data-strategy="degree" aria-pressed="true">Degree</button>
+              <button type="button" data-strategy="betweenness" aria-pressed="false">Betweenness</button>
+              <button type="button" data-strategy="closeness" aria-pressed="false">Closeness</button>
+              <button type="button" data-strategy="eigenvector" aria-pressed="false">Eigenvector</button>
+              <button type="button" data-strategy="random" aria-pressed="false">Random</button>
+            </div>
+            <label class="removal-slider" for="removal-count">
+              <span>Characters removed</span>
+              <strong id="removal-output">25</strong>
+              <input id="removal-count" type="range" min="0" max="50" value="25" step="1" />
+            </label>
+          </div>
+
+          <div class="attack-layout">
+            <div class="attack-chart-wrap">
+              <svg id="attack-chart" role="img" aria-labelledby="attack-chart-title attack-chart-desc">
+                <title id="attack-chart-title">Share of the original giant component remaining as characters are removed</title>
+                <desc id="attack-chart-desc">Targeted centrality attacks are compared with a random-removal baseline.</desc>
+              </svg>
+              <div class="chart-tooltip" id="attack-tooltip" hidden></div>
+            </div>
+            <aside class="attack-readout" aria-live="polite">
+              <p>Stress reading</p>
+              <strong id="giant-percent">82%</strong>
+              <span>of the original giant component remains</span>
+              <dl>
+                <div><dt>Largest component</dt><dd id="giant-size">228 nodes</dd></div>
+                <div><dt>Fragments</dt><dd id="component-count">23 components</dd></div>
+                <div><dt>Random baseline</dt><dd id="random-percent">90%</dd></div>
+              </dl>
+              <p id="attack-verdict">Targeting the 25 highest-degree characters leaves 228 together. Random removal leaves about 249.</p>
+            </aside>
+          </div>
+        </article>
+
+        <div class="single-hit-row">
+          <article><span>Single removal</span><h3>Spider-Man</h3><strong>5 stranded</strong><p>The biggest one-character shock, but 270 of the other 276 still remain together.</p></article>
+          <article><span>Quiet vulnerability</span><h3>Black Widow</h3><strong>3 stranded</strong><p>Her removal cuts off Blue Eagle, Rockman, and The Witness.</p></article>
+          <article><span>Verdict</span><h3>Robust, not invincible</h3><strong>69% remains</strong><p>Even after removing the 50 highest-degree characters.</p></article>
+        </div>
+      </section>
+
+      <section class="field-page path-page" id="paths" aria-labelledby="paths-title">
+        <header class="page-heading">
+          <p><span>03</span> Six degrees of Spider-Man</p>
+          <h2 id="paths-title">Every route leads to Spidey.</h2>
+          <p>Type any character in the 277-node giant component. The tool runs breadth-first search in your browser and returns one shortest chain to Spider-Man.</p>
+        </header>
+
+        <article class="pathfinder">
+          <form id="path-form">
+            <label for="character-search">Start with a character</label>
+            <div class="search-row">
+              <input id="character-search" list="character-list" value="Turbo (comics)" autocomplete="off" />
+              <datalist id="character-list"></datalist>
+              <button type="submit">Find shortest chain</button>
+            </div>
+          </form>
+          <div class="route-stage" id="route-stage" aria-live="polite">
+            <span>Turbo</span><i>1</i><span>Nova</span><i>2</i><span>Spider-Man</span>
+          </div>
+          <div class="route-result"><strong id="route-distance">2 steps</strong><p id="route-copy">One shortest path from Turbo to Spider-Man.</p></div>
+        </article>
+
+        <div class="distance-facts">
+          <article><strong>2.674</strong><span>mean distance</span></article>
+          <article><strong>6</strong><span>network diameter</span></article>
+          <article><strong>3</strong><span>radius</span></article>
+          <article><strong>Spider-Man</strong><span>the only center</span></article>
+        </div>
+      </section>
+
+      <section class="field-page clique-page" id="cliques" aria-labelledby="cliques-title">
+        <header class="page-heading light-heading">
+          <p><span>04</span> The room where everyone knows everyone</p>
+          <h2 id="cliques-title">The largest clique is an X-Men reunion.</h2>
+          <p>Marvel contains six overlapping 8-cliques. Six characters form the fixed core, while two seats rotate among Cable or Storm and Phoenix, Northstar, or Jubilee.</p>
+        </header>
+
+        <div class="clique-board">
+          <article class="clique-core">
+            <p>Always in the room</p>
+            <div class="core-names">
+              <span>Betsy Braddock</span><span>Cyclops</span><span>Emma Frost</span><span>Jean Grey</span><span>Rachel Summers</span><span>Wolverine</span>
+            </div>
+          </article>
+          <div class="plus-sign" aria-hidden="true">+</div>
+          <article class="clique-choice"><p>Choose one</p><strong>Cable</strong><span>or</span><strong>Storm</strong></article>
+          <div class="plus-sign" aria-hidden="true">+</div>
+          <article class="clique-choice"><p>Choose one</p><strong>Phoenix</strong><span>or</span><strong>Northstar</strong><span>or</span><strong>Jubilee</strong></article>
+        </div>
+        <p class="clique-equation"><span>6 core</span> + <span>1 of 2</span> + <span>1 of 3</span> = <strong>six distinct 8-cliques</strong></p>
+      </section>
+
+      <section class="field-page method-page" id="method" aria-labelledby="method-title">
+        <header class="page-heading">
+          <p><span>05</span> What we can honestly claim</p>
+          <h2 id="method-title">Importance is a question, not a score.</h2>
+        </header>
+
+        <div class="conclusion-grid">
+          <blockquote>
+            <span>Our answer</span>
+            <p>Spider-Man dominates every headline ranking, but the interesting result lives lower down: Turbo has only five links and much more betweenness than the degree sequence predicts. The network is resilient to a single removal, yet targeted attacks fragment it faster than random loss. Centrality therefore describes different kinds of importance, and the right choice depends on whether we care about popularity, reach, control, or prestige.</p>
+          </blockquote>
+          <div class="claim-cards">
+            <article><strong>We can say</strong><p>Turbo is an unexpectedly strong broker relative to degree-preserving null networks.</p></article>
+            <article><strong>We cannot say</strong><p>Turbo is the most important Marvel character in every meaningful sense.</p></article>
+          </div>
+        </div>
+
+        <div class="method-grid">
+          <ol>
+            <li><span>01</span><p>Collapse the frozen directed snapshot to undirected pairs and keep the 277-node giant component.</p></li>
+            <li><span>02</span><p>Compute degree, closeness, harmonic, betweenness, and eigenvector centrality with NetworkX.</p></li>
+            <li><span>03</span><p>Create 100 degree-preserving nulls with 14,210 successful edge swaps each.</p></li>
+            <li><span>04</span><p>Compare each real betweenness value with that character's own null distribution using corrected two-sided empirical p-values.</p></li>
+            <li><span>05</span><p>Remove up to 50 characters using static centrality rankings and compare with 100 random orders.</p></li>
+          </ol>
+          <aside class="receipt-card">
+            <p>Reproducibility pack</p>
+            <a href="../scripts/build_week3_data.py">Read the analysis script</a>
+            <a href="data/centrality_lab.json">Download the results</a>
+            <a href="https://sunelehmann.com/socialgraphs2026-web/weeks/week3.html#go-nuts" target="_blank" rel="noreferrer">Read the Week 3 brief ↗</a>
+            <small>Fixed seed 20260916 · 100 null networks · frozen course snapshot</small>
+          </aside>
+        </div>
+
+        <div class="issue-track" aria-label="Course post progress">
+          <a href="../"><span>01</span><small>Networks</small><strong>Fame vs. linkage</strong></a>
+          <a href="../week2/"><span>02</span><small>Null models</small><strong>Counterfeit triangles</strong></a>
+          <a href="./" aria-current="page"><span>03</span><small>Centrality</small><strong>Who holds it together?</strong></a>
+          <div><span>04</span><small>Coming next</small></div>
+          <div><span>05</span><small>Coming soon</small></div>
+          <div><span>06</span><small>Coming soon</small></div>
+          <div><span>07</span><small>Coming soon</small></div>
+          <div><span>08</span><small>Coming soon</small></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="field-reader" aria-label="Issue 03 sections">
+      <a href="#rank-lab" data-section-link><span>00</span><strong>Rank</strong></a>
+      <a href="#brokers" data-section-link><span>01</span><strong>Broker</strong></a>
+      <a href="#attack" data-section-link><span>02</span><strong>Attack</strong></a>
+      <a href="#paths" data-section-link><span>03</span><strong>Paths</strong></a>
+      <a href="#cliques" data-section-link><span>04</span><strong>Clique</strong></a>
+      <i aria-hidden="true"><b id="reading-progress"></b></i>
+    </nav>
+
+    <footer><span>Built by Sebastian, Orestis and Valdemar</span><span>Issue 03 · 02805 Social Graphs and Interactions · DTU · 2026</span></footer>
+    <script src="week3.js"></script>
+  </body>
+</html>

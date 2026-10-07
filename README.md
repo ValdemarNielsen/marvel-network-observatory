@@ -8,6 +8,8 @@ isolates. Issue 02 uses null models to test whether the degree sequence explains
 Issue 03 compares centrality definitions, tests betweenness against degree-preserving nulls,
 and stress-tests the giant component under targeted removal. Issue 04 switches to the frozen
 philosophers network to compare weighted communities, Louvain stability, and disparity backbones.
+Issue 05 joins the Marvel network to 303 Wikipedia articles and tests whether incoming links
+predict article length, then follows the largest exceptions and a vocabulary-growth race.
 
 ## What is interactive
 
@@ -22,6 +24,8 @@ philosophers network to compare weighted communities, Louvain stability, and dis
 - Interactive targeted-removal stress test and shortest-path finder
 - Animated weighted versus unweighted philosophy community atlas
 - Twenty-seed Louvain stability lab and interactive disparity-filter backbone
+- Week 5 network-fame versus article-length scatterplot with outlier filters
+- Animated attention case files and a famous-first versus minor-first vocabulary race
 
 ## Rebuild the derived data
 
@@ -52,8 +56,16 @@ Build the Week 4 philosophy community and backbone results with the same environ
 python scripts/build_week4_data.py
 ```
 
+Build the Week 5 text and network results with the same environment:
+
+```powershell
+python scripts/build_week5_data.py
+```
+
 ## Credits
 
 Built by Sebastian, Orestis and Valdemar using the course's frozen shared-playground release.
 Week 4 motion uses the MIT-licensed [Anime.js](https://animejs.com/) and
 [Rough Notation](https://roughnotation.com/) libraries, vendored with their license texts.
+Week 5 motion uses MIT-licensed Motion, AutoAnimate, and Typed.js 2.1.0, also vendored with
+their license texts.

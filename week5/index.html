@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b2ee9" />
+    <meta name="description" content="Does network fame buy a Marvel character more Wikipedia words? An animated Week 5 investigation of 303 articles." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Who Gets the Ink? | Network Observatory Issue 05" />
+    <meta property="og:description" content="A personal evidence desk for Marvel's Wikipedia attention economy." />
+    <meta property="og:url" content="https://valdemarnielsen.github.io/marvel-network-observatory/week5/" />
+    <title>Who Gets the Ink? | Network Observatory Issue 05</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="week5.css?v=1" />
+    <script src="vendor/motion.min.js" defer></script>
+    <script src="vendor/typed.min.js" defer></script>
+    <script type="module" src="week5.js?v=2"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#attention-lab">Skip to the evidence desk</a>
+    <header class="desk-header">
+      <a class="desk-brand" href="../"><span class="scribble-logo" aria-hidden="true">M</span><span>Network Observatory</span></a>
+      <nav class="issue-switcher" aria-label="Published issues"><a href="../">01</a><a href="../week2/">02</a><a href="../week3/">03</a><a href="../week4/">04</a><a href="./" aria-current="page">05</a></nav>
+      <span class="course-mark">02805 · Language half</span>
+    </header>
+
+    <main>
+      <section class="attention-lab" id="attention-lab" aria-labelledby="issue-title">
+        <div class="issue-intro">
+          <p class="eyebrow">Issue 05 · From language to numbers</p>
+          <h1 id="issue-title">Who gets<br />the <em>ink?</em></h1>
+          <p class="dek">We counted every word in 303 Marvel articles and matched each page to its incoming network links. The famous usually get more space. The exceptions are where the story starts.</p>
+          <div class="answer-stamp"><span>Our finding</span><strong>Fame explains <b>59%</b> of the variation.</strong><p>Strong relationship. Wild individual exceptions.</p></div>
+          <aside class="margin-note"><span>Notebook margin</span><p>We expected Spider-Man to own the longest page. Scarlet Witch beat him by almost 4,000 words.</p><small>S · O · V</small></aside>
+        </div>
+
+        <article class="scatter-card" aria-labelledby="scatter-title">
+          <header class="scatter-head"><div><span>Figure 01 · The attention test</span><h2 id="scatter-title">Links in. Words out.</h2></div><button type="button" id="replay-scatter">Replay dots</button></header>
+          <div class="filter-tabs" role="group" aria-label="Characters shown">
+            <button type="button" class="is-active" data-filter="all" aria-pressed="true">Everyone</button>
+            <button type="button" data-filter="over" aria-pressed="false">More ink than expected</button>
+            <button type="button" data-filter="under" aria-pressed="false">Less ink than expected</button>
+          </div>
+          <div class="scatter-wrap">
+            <svg id="attention-scatter" viewBox="0 0 820 560" role="img" aria-labelledby="scatter-title scatter-desc"><desc id="scatter-desc">Incoming network links compared with Wikipedia article word count for 303 Marvel characters.</desc></svg>
+            <div class="plot-crosshair" id="plot-crosshair" hidden><i></i><b></b></div>
+            <div class="plot-tooltip" id="plot-tooltip" hidden></div>
+          </div>
+          <div class="axis-label axis-y">Wikipedia words</div><div class="axis-label axis-x">Incoming links from other Marvel pages</div>
+          <footer class="scatter-foot"><p>Each dot is one article. Both axes use a log scale so the smallest pages remain visible.</p><div><span><i class="legend-over"></i> More than predicted</span><span><i class="legend-under"></i> Less than predicted</span></div></footer>
+        </article>
+
+        <article class="evidence-strip" aria-live="polite">
+          <div class="evidence-tab"><span>Selected file</span><strong id="evidence-name">Brian Braddock</strong></div>
+          <dl><div><dt>Incoming links</dt><dd id="evidence-links">1</dd></div><div><dt>Actual words</dt><dd id="evidence-words">7,294</dd></div><div><dt>Model expected</dt><dd id="evidence-predicted">913</dd></div></dl>
+          <blockquote><span id="typed-evidence"></span></blockquote>
+          <a id="evidence-link" href="https://en.wikipedia.org/wiki/Brian_Braddock" target="_blank" rel="noreferrer">Inspect article</a>
+        </article>
+      </section>
+
+      <section class="desk-page dossiers-page" id="case-files" aria-labelledby="case-title">
+        <header class="page-heading reveal">
+          <p>02 · Read the outliers</p>
+          <h2 id="case-title">The model is useful.<br /><em>The mistakes are better.</em></h2>
+          <p>A residual is the gap between the model's expected page length and the real article. We ranked those gaps, then opened the pages. Click a file to read the evidence underneath the number.</p>
+        </header>
+
+        <div class="dossier-controls reveal" role="group" aria-label="Type of attention outlier">
+          <button type="button" class="is-active" data-dossier="overwritten" aria-pressed="true"><span>Case stack A</span><strong>More ink than expected</strong></button>
+          <button type="button" data-dossier="underwritten" aria-pressed="false"><span>Case stack B</span><strong>Less ink than expected</strong></button>
+        </div>
+
+        <div class="dossier-board">
+          <div class="dossier-list reveal" id="dossier-list"></div>
+          <article class="dossier-detail reveal" id="dossier-detail" aria-live="polite">
+            <div class="paperclip" aria-hidden="true"></div>
+            <p class="file-code" id="file-code">FILE 001 · ATTENTION SURPLUS</p>
+            <h3 id="file-name">Brian Braddock</h3>
+            <div class="file-ratio"><span id="file-actual">7,294 words</span><i>versus</i><span id="file-expected">913 expected</span></div>
+            <p class="file-verdict" id="file-verdict">Eight times the model's expectation with only one incoming network link.</p>
+            <blockquote id="dossier-excerpt"></blockquote>
+            <div class="word-clippings" id="word-clippings"></div>
+            <a id="file-link" href="https://en.wikipedia.org/wiki/Brian_Braddock" target="_blank" rel="noreferrer">Read the underlying page</a>
+          </article>
+        </div>
+
+        <aside class="field-note reveal"><span>What the page explained</span><p>Brian Braddock is Captain Britain, and his article carries decades of British publishing history plus a long fictional biography. Network fame inside this 303-character set misses that editorial history.</p></aside>
+      </section>
+
+      <section class="desk-page race-page" id="vocabulary-race" aria-labelledby="race-title">
+        <header class="page-heading light reveal">
+          <p>03 · The vocabulary race</p>
+          <h2 id="race-title">Who introduces the Marvel vocabulary first?</h2>
+          <p>We added pages in two orders: most-linked characters first and least-linked characters first. The finishing vocabulary is identical. The route there is not.</p>
+        </header>
+
+        <article class="race-lab reveal">
+          <header><div><span>Figure 02 · Accumulated types</span><h3>Famous pages start with a head start</h3></div><button type="button" id="play-race">Play the race</button></header>
+          <div class="race-layout">
+            <div class="race-chart-wrap"><svg id="race-chart" viewBox="0 0 820 420" role="img" aria-label="Vocabulary growth when Marvel pages are added famous-first or minor-first"></svg></div>
+            <aside class="race-score">
+              <p>After <strong id="race-pages">50</strong> pages</p>
+              <div class="score-famous"><span>Famous first</span><strong id="race-famous">18,264</strong><small>types collected</small></div>
+              <div class="score-minor"><span>Minor first</span><strong id="race-minor">6,517</strong><small>types collected</small></div>
+              <p id="race-gap">The famous-first corpus has 2.8× as many types at this point.</p>
+            </aside>
+          </div>
+          <label class="race-slider" for="race-range"><span>Pages added</span><input id="race-range" type="range" min="1" max="303" value="50" step="1" /><output id="race-output">50 / 303</output></label>
+        </article>
+
+        <div class="race-interpretation reveal"><strong>Careful:</strong><p>This is not proof that famous characters use more original language. Their articles are much longer, so famous-first exposes more tokens sooner. Page order and document size are tangled together.</p></div>
+      </section>
+
+      <section class="desk-page verdict-page" id="verdict" aria-labelledby="verdict-title">
+        <header class="page-heading reveal"><p>04 · Close the file</p><h2 id="verdict-title">Fame buys ink.<br />It does not set the price.</h2><p>Incoming links and article length have Spearman correlation 0.752. The log-log regression explains 59% of page-length variation. That is a real relationship with plenty of room for publishing history, alternate identities, adaptations, and Wikipedia editing culture.</p></header>
+
+        <div class="verdict-grid reveal">
+          <article><span>We can claim</span><p>Within this frozen 303-page corpus, characters linked by more peers usually have longer articles.</p></article>
+          <article><span>We cannot claim</span><p>Links cause longer pages, or word count measures cultural importance, popularity, or article quality.</p></article>
+          <article><span>The useful surprise</span><p>Brian Braddock and Quasar show why a regression should lead back to the documents, not replace reading them.</p></article>
+        </div>
+
+        <div class="desk-rules reveal">
+          <p>Three rules pinned over our desk</p>
+          <ol><li><b>01</b><span>Count before interpreting.</span></li><li><b>02</b><span>Open the winning document.</span></li><li><b>03</b><span>Name what the metric cannot see.</span></li></ol>
+          <small>Sebastian · Orestis · Valdemar</small>
+        </div>
+
+        <div class="method-board reveal">
+          <div><span>Preprocessing receipt</span><p>303 rendered Wikipedia articles. Word-like tokens matched with <code>[A-Za-z]+</code>, lowercased. Punctuation is not counted. Possessives and contractions stay together. The network measure is in-degree from the frozen Week 1 directed graph.</p></div>
+          <div><span>Model receipt</span><p>Ordinary least squares on <code>log(words)</code> versus <code>log(1 + in-degree)</code>. “More” and “less than expected” refer only to this fitted relationship.</p></div>
+          <aside><p>Reproduce it</p><a href="../scripts/build_week5_data.py">Analysis script</a><a href="data/attention_desk.json">Derived results</a><a href="https://sunelehmann.com/socialgraphs2026-web/data/">Frozen source data</a><small>Motion by <a href="https://motion.dev/">Motion</a>, <a href="https://auto-animate.formkit.com/">AutoAnimate</a>, and <a href="https://github.com/mattboldt/typed.js/tree/v2.1.0">Typed.js v2.1</a>. All three versions used here are MIT licensed.</small></aside>
+        </div>
+
+        <nav class="issue-track" aria-label="Course issue archive">
+          <a href="../"><span>01</span><small>Networks</small></a><a href="../week2/"><span>02</span><small>Nulls</small></a><a href="../week3/"><span>03</span><small>Centrality</small></a><a href="../week4/"><span>04</span><small>Communities</small></a><a href="./" aria-current="page"><span>05</span><small>Language</small></a><i><span>06</span><small>Coming next</small></i><i><span>07</span><small>Coming next</small></i><i><span>08</span><small>Coming next</small></i>
+        </nav>
+      </section>
+    </main>
+
+    <div class="ticker" aria-hidden="true"><span>303 DOCUMENTS · 727,383 WORDS · 26,959 TYPES · ONE QUESTION · WHO GETS THE INK? · </span><span>303 DOCUMENTS · 727,383 WORDS · 26,959 TYPES · ONE QUESTION · WHO GETS THE INK? · </span></div>
+    <nav class="reader-nav" aria-label="Read this issue"><a href="#attention-lab" aria-current="true"><span>01</span><strong>Attention</strong></a><a href="#case-files"><span>02</span><strong>Files</strong></a><a href="#vocabulary-race"><span>03</span><strong>Race</strong></a><a href="#verdict"><span>04</span><strong>Verdict</strong></a><i><b id="reader-progress"></b></i></nav>
+    <footer><span>Evidence desk of Sebastian, Orestis and Valdemar</span><span>DTU 02805 · Week 5 · 2026</span></footer>
+  </body>
+</html>

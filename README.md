@@ -6,7 +6,8 @@ The site explores the frozen 26 August 2026 snapshot of 303 pages in Wikipedia's
 `Category:Marvel Comics superheroes`. Issue 01 studies edge direction and preserves all 17
 isolates. Issue 02 uses null models to test whether the degree sequence explains clustering.
 Issue 03 compares centrality definitions, tests betweenness against degree-preserving nulls,
-and stress-tests the giant component under targeted removal.
+and stress-tests the giant component under targeted removal. Issue 04 switches to the frozen
+philosophers network to compare weighted communities, Louvain stability, and disparity backbones.
 
 ## What is interactive
 
@@ -19,6 +20,8 @@ and stress-tests the giant component under targeted removal.
 - Week 3 centrality switchboard with live character profiles
 - Betweenness surprise scores against 100 degree-preserving null networks
 - Interactive targeted-removal stress test and shortest-path finder
+- Animated weighted versus unweighted philosophy community atlas
+- Twenty-seed Louvain stability lab and interactive disparity-filter backbone
 
 ## Rebuild the derived data
 
@@ -43,6 +46,14 @@ Build the Week 3 centrality and robustness results with the same environment:
 python scripts/build_week3_data.py
 ```
 
+Build the Week 4 philosophy community and backbone results with the same environment:
+
+```powershell
+python scripts/build_week4_data.py
+```
+
 ## Credits
 
 Built by Sebastian, Orestis and Valdemar using the course's frozen shared-playground release.
+Week 4 motion uses the MIT-licensed [Anime.js](https://animejs.com/) and
+[Rough Notation](https://roughnotation.com/) libraries, vendored with their license texts.

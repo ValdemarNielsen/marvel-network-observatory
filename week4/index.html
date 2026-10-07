@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3ead6" />
+    <meta name="description" content="An animated atlas of 1,444 philosophers. Watch link weights redraw intellectual communities, test Louvain stability, and strip the network to its significant backbone." />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Weight of an Idea | Network Observatory Issue 04" />
+    <meta property="og:description" content="What changes when one Wikipedia link becomes eighteen? An interactive Week 4 investigation of communities, weights, and backbones." />
+    <meta property="og:url" content="https://valdemarnielsen.github.io/marvel-network-observatory/week4/" />
+    <title>The Weight of an Idea | Network Observatory Issue 04</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="week4.css" />
+    <script src="vendor/anime.min.js" defer></script>
+    <script type="module" src="week4.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#atlas">Skip to the atlas</a>
+
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-orbit" aria-hidden="true"><i></i><i></i><i></i></span><span>Network Observatory</span></a>
+      <nav class="issue-switcher" aria-label="Published issues">
+        <a href="../">01</a><a href="../week2/">02</a><a href="../week3/">03</a><a href="./" aria-current="page">04</a>
+      </nav>
+      <span class="course-mark">DTU 02805 · Week 4</span>
+    </header>
+
+    <main>
+      <section class="hero" id="atlas" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Issue 04 · Communities and weights</p>
+          <h1 id="hero-title">The weight<br />of an <em id="idea-word">idea</em></h1>
+          <p class="standfirst">A link can be a whisper or a recurring conversation. We let 1,444 philosophers rearrange themselves to find out whether link weight changes the intellectual map.</p>
+          <div class="hero-finding">
+            <span>The answer</span>
+            <strong><b data-count="260">260</b> philosophers move.</strong>
+            <p>That is 18.9% of the giant component. The broad traditions survive, but their borders do not.</p>
+          </div>
+        </div>
+
+        <article class="atlas-console" aria-labelledby="atlas-title">
+          <header class="console-head">
+            <div><span>Live map 01</span><h2 id="atlas-title">Two ways to see the same network</h2></div>
+            <div class="map-status"><i></i><span id="map-status">Weight matters</span></div>
+          </header>
+          <div class="map-controls" role="group" aria-label="Community view">
+            <button type="button" class="is-active" data-view="weighted" aria-pressed="true"><span>Count repeats</span><strong>Weighted</strong></button>
+            <button type="button" data-view="unweighted" aria-pressed="false"><span>One link is one link</span><strong>Unweighted</strong></button>
+            <button type="button" data-view="movers" aria-pressed="false"><span>Only the border cases</span><strong>Show movers</strong></button>
+          </div>
+          <div class="map-stage">
+            <canvas id="community-canvas" aria-label="Animated community map of philosophers"></canvas>
+            <div class="map-tooltip" id="map-tooltip" hidden></div>
+            <div class="map-legend" id="map-legend" aria-label="Community color legend"></div>
+          </div>
+          <footer class="console-foot">
+            <p id="map-caption">Weighted Louvain, seed 11. The fast preview draws 427 high-strength and boundary nodes; all statistics use the full giant component.</p>
+            <span><kbd>Tip</kbd> toggle the map</span>
+          </footer>
+        </article>
+      </section>
+
+      <section class="chapter shift-chapter" id="shift" aria-labelledby="shift-title">
+        <header class="chapter-heading reveal">
+          <p>01 · The border moves</p>
+          <h2 id="shift-title">Same people.<br /><span id="different-borders">Different borders.</span></h2>
+          <p>Both Louvain runs find nine communities. Once repeated links carry more influence, modularity rises and 260 philosophers cross the best-matched community borders.</p>
+        </header>
+
+        <div class="score-strip reveal">
+          <article><span>Agreement</span><strong>0.722</strong><small>normalized mutual information</small></article>
+          <article><span>Weighted map</span><strong>Q = 0.568</strong><small>nine communities</small></article>
+          <article><span>Unweighted map</span><strong>Q = 0.504</strong><small>nine communities</small></article>
+          <article class="accent-score"><span>Changed assignment</span><strong>18.9%</strong><small>260 of 1,374 nodes</small></article>
+        </div>
+
+        <div class="mover-layout">
+          <article class="mover-ledger reveal">
+            <header><div><p>Case files</p><h3>Who crosses the line?</h3></div><span>Click to locate</span></header>
+            <div id="mover-list" class="mover-list" aria-live="polite"></div>
+          </article>
+          <aside class="mover-note reveal">
+            <p class="note-number">260</p>
+            <h3>A move is not a conversion.</h3>
+            <p>Community detection does not discover a philosopher's true school. It groups pages whose links are unusually dense. A move tells us that repeated links changed which neighborhood offered the stronger statistical fit.</p>
+            <blockquote>Weights are not decoration. They change the question from “is there a link?” to “how much attention flows through it?”</blockquote>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter stability-chapter" id="stability" aria-labelledby="stability-title">
+        <header class="chapter-heading reveal">
+          <p>02 · Shake the algorithm</p>
+          <h2 id="stability-title">A community map is a proposal, not a verdict.</h2>
+          <p>Louvain makes randomized choices. We ran the weighted version twenty times, then compared every pair of partitions. Good maps recur, but they are not identical.</p>
+        </header>
+
+        <div class="stability-layout">
+          <article class="seed-lab reveal">
+            <header><div><p>Experiment 02</p><h3>Twenty seeds, twenty answers</h3></div><button type="button" id="replay-seeds">Replay</button></header>
+            <div class="seed-chart" id="seed-chart" role="img" aria-label="Modularity and community count across twenty Louvain seeds"></div>
+            <div class="seed-axis"><span>Q = 0.545</span><span>modularity</span><span>Q = 0.570</span></div>
+          </article>
+          <div class="stability-readout reveal">
+            <article><span>Mean agreement</span><strong>0.756</strong><p>Average NMI across all 190 run pairs.</p></article>
+            <article><span>Observed range</span><strong>0.645–0.877</strong><p>No pair fully agrees, but the structure is far from arbitrary.</p></article>
+            <article><span>Community count</span><strong>7–10</strong><p>The algorithm sometimes merges or splits border regions.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter backbone-chapter" id="backbone" aria-labelledby="backbone-title">
+        <header class="chapter-heading reveal">
+          <p>03 · Remove the noise</p>
+          <h2 id="backbone-title">How much can we erase before the map breaks?</h2>
+          <p>The disparity filter judges every edge against its node's own attention budget. Move the significance level to keep only locally surprising links.</p>
+        </header>
+
+        <article class="backbone-lab reveal">
+          <div class="backbone-controls">
+            <div>
+              <span>Significance level α</span>
+              <div class="alpha-buttons" id="alpha-buttons" role="group" aria-label="Backbone significance level"></div>
+            </div>
+            <button type="button" id="play-backbone"><span aria-hidden="true">▶</span> Play collapse</button>
+          </div>
+          <div class="backbone-stage">
+            <canvas id="backbone-canvas" aria-label="Animated disparity-filter backbone"></canvas>
+            <div class="backbone-overlay">
+              <span id="backbone-label">Strictest filter</span>
+              <strong id="backbone-giant">8</strong>
+              <small>nodes in the giant component</small>
+            </div>
+          </div>
+          <div class="backbone-meter" aria-hidden="true"><i id="backbone-meter"></i></div>
+          <div class="backbone-stats" aria-live="polite">
+            <div><span>Links kept</span><strong id="backbone-edges">145</strong><small>of 9,139</small></div>
+            <div><span>Active philosophers</span><strong id="backbone-active">248</strong><small>with at least one surviving link</small></div>
+            <div><span>Giant component</span><strong id="backbone-percent">0.6%</strong><small>of the original giant</small></div>
+          </div>
+        </article>
+
+        <div class="breakpoint-callout reveal">
+          <p>What surprised us</p>
+          <h3>The network does not thin evenly.</h3>
+          <p>At α = 0.05 the largest connected piece contains 130 philosophers. At α = 0.10 it jumps to 465. A small relaxation reconnects entire intellectual regions.</p>
+        </div>
+      </section>
+
+      <section class="chapter aristotle-chapter" id="aristotle" aria-labelledby="aristotle-title">
+        <header class="chapter-heading reveal">
+          <p>04 · One philosopher under the lens</p>
+          <h2 id="aristotle-title">Where does Aristotle belong?</h2>
+          <p>His page has 300 distinct neighbors and weighted strength 521. Weighted or not, Aristotle stays at the center of the ancient cluster, but that cluster is anything but a single discipline.</p>
+        </header>
+        <div class="aristotle-card reveal">
+          <div class="portrait-mark" aria-hidden="true"><span>A</span><i></i></div>
+          <div class="aristotle-copy">
+            <p class="folio">Case study · Aristotle</p>
+            <h3>Ancient, central, and impossible to file neatly.</h3>
+            <p>Wikipedia lists him across aesthetics, epistemology, ethics, logic, metaphysics, and social and political philosophy. His strongest community neighbors include Plato, Heraclitus, Theophrastus, and Xenophanes.</p>
+            <div class="field-tags"><span>Aesthetics</span><span>Epistemology</span><span>Ethics</span><span>Logic</span><span>Metaphysics</span><span>Politics</span></div>
+          </div>
+          <dl>
+            <div><dt>Degree</dt><dd>300</dd></div><div><dt>Strength</dt><dd>521</dd></div><div><dt>Community</dt><dd>Ancient Mediterranean</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="chapter method-chapter" id="method" aria-labelledby="method-title">
+        <header class="chapter-heading reveal"><p>05 · The receipt</p><h2 id="method-title">A beautiful map still needs honest labels.</h2></header>
+        <div class="method-grid reveal">
+          <ol>
+            <li><span>01</span><p>Add all 1,444 philosophers first, so disconnected pages survive.</p></li>
+            <li><span>02</span><p>Collapse 11,135 directed links into 9,140 undirected pairs by summing both directions.</p></li>
+            <li><span>03</span><p>Use the 1,374-node giant component and run Louvain with and without weights at seed 11.</p></li>
+            <li><span>04</span><p>Align community labels by maximum overlap, then measure agreement with NMI.</p></li>
+            <li><span>05</span><p>Repeat weighted Louvain across twenty seeds and compute all 190 pairwise NMI values.</p></li>
+            <li><span>06</span><p>Keep an edge in the disparity backbone when it is significant for either endpoint.</p></li>
+          </ol>
+          <aside class="receipt">
+            <p>Reproducibility pack</p>
+            <a href="../scripts/build_week4_data.py">Read the analysis script</a>
+            <a href="data/philosophy_atlas.json">Download derived results</a>
+            <a href="https://sunelehmann.com/socialgraphs2026-web/data/">Open the frozen course data</a>
+            <small>Animations use <a href="https://animejs.com/">Anime.js</a> and <a href="https://roughnotation.com/">Rough Notation</a>, both MIT licensed. Motion is reduced when your device requests it.</small>
+          </aside>
+        </div>
+
+        <div class="answer-card reveal">
+          <span>Our answer</span>
+          <p>Wikipedia's philosopher network has a stable large-scale shape and unstable borders. Weighting repeated links makes the division statistically sharper, but it moves nearly one in five philosophers. The right lesson is not that one partition is true. It is that every community map encodes a choice about what counts as evidence.</p>
+        </div>
+
+        <nav class="issue-track" aria-label="Course issue archive">
+          <a href="../"><span>01</span><small>Degree</small><strong>Marvel links</strong></a>
+          <a href="../week2/"><span>02</span><small>Randomness</small><strong>Null models</strong></a>
+          <a href="../week3/"><span>03</span><small>Importance</small><strong>Centrality</strong></a>
+          <a href="./" aria-current="page"><span>04</span><small>Structure</small><strong>Communities</strong></a>
+          <i><span>05</span><small>Coming next</small></i><i><span>06</span><small>Coming next</small></i><i><span>07</span><small>Coming next</small></i><i><span>08</span><small>Coming next</small></i>
+        </nav>
+      </section>
+    </main>
+
+    <nav class="reader-nav" aria-label="Read this issue">
+      <a href="#atlas" aria-current="true"><span>00</span><strong>Atlas</strong></a>
+      <a href="#shift"><span>01</span><strong>Shift</strong></a>
+      <a href="#stability"><span>02</span><strong>Seeds</strong></a>
+      <a href="#backbone"><span>03</span><strong>Backbone</strong></a>
+      <a href="#aristotle"><span>04</span><strong>Aristotle</strong></a>
+      <i><b id="reader-progress"></b></i>
+    </nav>
+
+    <footer><span>Built by Sebastian, Orestis and Valdemar</span><span>DTU 02805 · Week 4 · 2026</span></footer>
+  </body>
+</html>
